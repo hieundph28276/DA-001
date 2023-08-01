@@ -18,11 +18,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call([
-            // ProductSeeder::class
-            // CategorySeeder::class
-            UserSeeder::class
-        ]);
+        // $this->call([
+        //     // ProductSeeder::class
+        //     // CategorySeeder::class
+        //     // UserSeeder::class
+        //     BannerSeeder::class
+        // ]);
         // $category = [
         //             "name" => "Ngyen Duc Hieu",
         //             "brand" => "iphone",
@@ -37,9 +38,11 @@ class DatabaseSeeder extends Seeder
         //     //         "updated_at" => date('Y-m-d H:i:s'),  
         //            ];
         //            DB::table('product')->insert($category); 
-        // $category = [
-        //     "name" => "Vivo",
-        // ];
-        //            DB::table('category')->insert($category); 
+        $category = [
+            "name" => "banner1",
+            "description" => "có dc hay không",
+            "image" => "agagagg"
+        ];
+                   DB::table('banners')->insert($category); 
     }
 }

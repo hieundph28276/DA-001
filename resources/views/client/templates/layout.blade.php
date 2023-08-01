@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Jerin - Minimal eCommerce HTML Template</title>
+    <title>Uplon - Welcome</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('css-clien/responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css-clien/demo.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css-clien/menu_elastic.css') }}" />
+    <link href="{{ asset ('css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('js-clien/vendor/modernizr-2.8.3.min.js') }}"></script>
 </head>
 
@@ -37,22 +38,18 @@
         <div class="menu-wrap">
             <nav class="menu">
                 <div class="icon-list">
-                    <h5>Currency:</h5>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default">EURO</button>
-                        <button type="button" class="btn btn-default">USD</button>
-                    </div>
-                    <h5 class="mt-2">Language</h5>
-                    <a href="#"><img src="{{ asset('img/language/english.png') }}" alt=""><span>English</span></a>
-                    <a href="#"><img src="{{ asset('img/language/es.png') }}" alt=""><span>Spanish</span></a>
-                    <a href="#"><img src="{{ asset('img/language/fr.png') }}" alt=""><span>French</span></a>
-                    <a href="#"><img src="{{ asset('img/language/ge.png') }}" alt=""><span>German</span></a>
                     <h5 class="mt-2">My Account:</h5>
+                    @auth
+                    <h5 class="mt-2">{{ session('user')->name }}</h5>
+                    @endauth
+                    @guest
+                    <h5>Welcome</h5>
+                    @endguest
                     <a href="cart.html"><i class="pe-7s-cart"></i><span>My Cart</span></a>
                     <a href="wishlist.html"><i class="pe-7s-like"></i><span>My Wishlist</span></a>
                     <a href="checkout.html"><i class="pe-7s-check"></i><span>Checkout</span></a>
-                    <a href="login.html"><i class="pe-7s-next-2"></i><span>Sign In</span></a>
-                    <a href="register.html"><i class="pe-7s-add-user"></i><span>Sign Up</span></a>
+                    <a href="{{ route('login') }}"><i class="pe-7s-next-2"></i><span>Sign In</span></a>
+                    <a href="{{ route('login_add') }}"><i class="pe-7s-add-user"></i><span>Sign Up</span></a>
                 </div>
             </nav>
             <button class="close-button" id="close-button">Close Menu</button>
@@ -73,8 +70,8 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-3 col-xs-6">
                                     <div class="logo">
-                                        <a href="index.html">
-                                            <img src="{{ asset('img/logo/logo-black.png') }}" alt="">
+                                        <a href="/">
+                                            <img src="{{ asset ('images/logo.png') }}" alt="" height="22">
                                         </a>
                                     </div>
                                 </div>
@@ -90,9 +87,10 @@
                                                 <i class="pe-7s-search"></i>
                                             </a>
                                             <div class="search2-content">
-                                                <form action="#">
+                                                <form action="{{ route('index') }}" method="POST">
+                                                    @csrf
                                                     <div class="search-input-button2">
-                                                        <input class="" placeholder="Search" type="search">
+                                                        <input class="" placeholder="Search" type="text" name="name">
                                                         <button class="search-button2" type="submit">
                                                             <i class="pe-7s-search"></i>
                                                         </button>
@@ -101,7 +99,7 @@
                                             </div>
                                         </div>
                                         <div class="shopping-cart f-right">
-                                            <a class="top-cart" href="cart.html"><i class="pe-7s-cart"></i></a>
+                                            <a class="top-cart" href="/cart"><i class="pe-7s-cart"></i></a>
                                             <span>01</span>
                                             <ul>
                                                 <li>
@@ -136,12 +134,7 @@
                                         <div class="main-menu f-right">
                                             <nav>
                                                 <ul>
-                                                    <li><a href="index.html">home</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="index.html">home version 1 </a></li>
-                                                            <li><a href="index-2.html">home version 2 </a></li>
-                                                            <li><a href="index-3.html">home version 3 </a></li>
-                                                        </ul>
+                                                    <li><a href="/">home</a>
                                                     </li>
                                                     <li class="mega-position"><a href="shop-page.html">Women </a>
                                                         <div class="mega-menu mega-4-colm">
@@ -312,341 +305,8 @@
                     </div>
                 </div>
                 <!-- mobile-menu-area end -->
-                <!-- slider start -->
-                <section class="hero-slider-container">
-                    <div class="hero-slider owl-carousel">
-                        <div class="hero-slider-item hero-slider-item-1">
-                            <div class="hero-slider-contents">
-                                <!-- <div class="container">
-                                    <h1 class="title1">Amazing Collections</h1>
-                                    <p class="title2">New Arrivals 2018</p>
-                                    <a href="#" class="button-hover">SHOP NOW</a>
-                                </div> -->
-                            </div>
-                        </div>
-
-                        <div class="hero-slider-item hero-slider-item-2">
-                            <div class="hero-slider-contents">
-                                <!-- <div class="container">
-                                    <h1 class="title1">Awesome Collections</h1>
-                                    <p class="title2">New Arrivals 2018</p>
-                                    <a href="#" class="button-hover">SHOP NOW</a>
-                                </div> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="#" class="hero-slider-nav prev"><i class="fa fa-angle-left"></i></a>
-                    <a href="#" class="hero-slider-nav next"><i class="fa fa-angle-right"></i></a>
-                </section>
-                <!-- slider end -->
-                <!-- banner style 2 start -->
-                <div class="banner-style-2 pt-100">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="banner-style-2-img mb-res">
-                                    <img src="{{ asset('img/banner/6.jpg') }}" alt="">
-                                    <div class="banner-style-2-dec">
-                                        <h4>Laser Scann</h4>
-                                        <h3>Sale 30% off</h3>
-                                        <a href="#">shop now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="banner-style-2-img mb-res">
-                                    <img src="{{ asset('img/banner/7.jpg') }}" alt="">
-                                    <div class="banner-style-2-dec">
-                                        <h4>Table Lamp</h4>
-                                        <h3>Vacation Offer</h3>
-                                        <a href="#">shop now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="banner-style-2-img">
-                                    <img src="{{ asset('img/banner/8.jpg') }}" alt="">
-                                    <div class="banner-style-2-dec">
-                                        <h4>Artech leo</h4>
-                                        <h3>Unlimited offer</h3>
-                                        <a href="#">shop now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- banner style 2 end -->
-                <!-- shop area start -->
-                <!-- <div class="portfolio-area pt-100 pb-80">
-                    <div class="container">
-                        <div class="section-title text-center mb-50">
-                            <h2>Featured Collections <i class="fa fa-shopping-cart"></i></h2>
-                        </div>
-                        <div class="shop-menu portfolio-left-menu text-center mb-50">
-                            <button class="active" data-filter=".mix1">All </button>
-                            <button data-filter=".mix2">Tranding</button>
-                            <button data-filter=".mix3">Best sell </button>
-                            <button data-filter=".mix4">Popular </button>
-                        </div>			
-                        <div class="row portfolio-style-2">
-                            <div class="grid">
-                                <div class="col-md-3 col-sm-6 col-xs-12 grid-item mix2 mix4 mix1 mix3 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="#"><img src="{{ asset('img/shop/electronics/4.jpg') }}" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="Add to Cart">
-                                                    <i class="pe-7s-cart"></i>
-                                                    add to cart
-                                                </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="#">PC Headphone</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">$120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12 grid-item mix1 mix4 mix3 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="#"><img src="{{ asset('img/shop/electronics/1.jpg') }}" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="price-up-down">
-                                                <span class="sale-new">sale</span>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="Add to Cart">
-                                                    <i class="pe-7s-cart"></i>
-                                                    add to cart
-                                                </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="#">Table lamp</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">$120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>
-                                </div>	
-                                <div class="col-md-3 col-sm-6 col-xs-12 grid-item mix1 mix3 mix2 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="#"><img src="{{ asset('img/shop/electronics/3.jpg') }}" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="price-up-down">
-                                                <span class="sale-new">-30%</span>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="Add to Cart">
-                                                    <i class="pe-7s-cart"></i>
-                                                    add to cart
-                                                </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="#">Man Watch</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">$120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>
-                                </div>				
-                                <div class="col-md-3 col-sm-6 col-xs-12 grid-item mix2 mix1 mix4 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="#"><img src="{{ asset('img/shop/electronics/2.jpg') }}" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="Add to Cart">
-                                                    <i class="pe-7s-cart"></i>
-                                                    add to cart
-                                                </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="#">Table Fan</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">$120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>						
-                                </div>
-                            </div>		
-                        </div>
-                    </div>
-                </div> -->
-                <!-- shop area end -->
-                <!-- <div class="counter-home2">
-                    <div class="container">
-                        <div class="counter2-all text-center">
-                            <img alt="" src="{{ asset('img/banner/9.jpg') }}">
-                            <div class="counter-content">
-                                <h2>Deal Of The Week</h2>
-                                <h4>Special Discount Limited Time Only</h4>
-                                <div class="timer">
-                                    <div data-countdown="2019/12/20"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- shop area start -->
-                <div class="portfolio-area pt-100 pb-70">
-                    <div class="container">
-                        <div class="section-title text-center mb-50">
-                            <h2>New Collections <i class="fa fa-shopping-cart"></i></h2>
-                        </div>
-                        @yield('content')
-                    </div>
-                </div>
-                <!-- shop area end -->
-                <!-- blog area start -->
-                <div class="blog-area gray-bg pt-100 pb-70">
-                    <div class="container">
-                        <div class="section-title text-center mb-50">
-                            <h2>latest news <i class="fa fa-pencil"></i></h2>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-6">
-                                <div class="blog-details mb-30">
-                                    <div class="blog-img">
-                                        <a href="blog-details.html"><img src="{{ asset('img/blog/1.jpg') }}" alt=""></a>
-                                        <div class="blog-quick-view">
-                                            <a href="blog-details.html">
-                                                <i class="pe-7s-link"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="blog-meta">
-                                        <h4><a href="blog-details.html">Lorem Ipsum Dolor Ipsum</a></h4>
-                                        <ul class="meta">
-                                            <li><a href="#">John Doe</a></li>
-                                            <li>25 june</li>
-                                            <li>3 Comments</li>
-                                        </ul>
-                                        <p>Lorem Ipsum is that it has a more-or-less normal of letters, as opposed to
-                                            using 'Content here, distribution content here..</p>
-                                        <a href="blog-details.html">read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6">
-                                <div class="blog-details mb-30">
-                                    <div class="blog-img">
-                                        <a href="blog-details.html"><img src="{{ asset('img/blog/2.jpg') }}" alt=""></a>
-                                        <div class="blog-quick-view">
-                                            <a href="blog-details.html">
-                                                <i class="pe-7s-link"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="blog-meta">
-                                        <h4><a href="blog-details.html">Grand opening ceremony</a></h4>
-                                        <ul class="meta">
-                                            <li><a href="#">Mr Rohit</a></li>
-                                            <li>25 june</li>
-                                            <li>3 Comments</li>
-                                        </ul>
-                                        <p>Lorem Ipsum is that it has a more-or-less normal of letters, as opposed to
-                                            using 'Content here, distribution content here..</p>
-                                        <a href="blog-details.html">read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 hidden-sm">
-                                <div class="blog-details mb-30">
-                                    <div class="blog-img">
-                                        <a href="blog-details.html"><img src="{{ asset('img/blog/3.jpg') }}" alt=""></a>
-                                        <div class="blog-quick-view">
-                                            <a href="blog-details.html">
-                                                <i class="pe-7s-link"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="blog-meta">
-                                        <h4><a href="blog-details.html">World wide celebration</a></h4>
-                                        <ul class="meta">
-                                            <li><a href="#">Mr Rahul</a></li>
-                                            <li>25 june</li>
-                                            <li>3 Comments</li>
-                                        </ul>
-                                        <p>Lorem Ipsum is that it has a more-or-less normal of letters, as opposed to
-                                            using 'Content here, distribution content here..</p>
-                                        <a href="blog-details.html">read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- blog area end -->
+                @yield('cart')
+                @yield('content')
                 <!-- footer area start -->
                 <footer class="footer-area">
                     <div class="container">
@@ -655,23 +315,23 @@
                                 <div class="col-md-3 col-sm-4">
                                     <div class="footer-widget mb-30">
                                         <div class="footer-logo">
-                                            <a href="index.html">
-                                                <img src="{{ asset('img/logo/logo-black.png') }}" alt="">
+                                            <a href="/">
+                                                <img src="{{ asset ('images/logo.png') }}" alt="" height="22">
                                             </a>
                                         </div>
                                         <div class="widget-info">
                                             <p>
                                                 <i class="pe-7s-map-marker"> </i>
                                                 <span>
-                                                    #183 Scelerisque Road 10.
+                                                    #14 Nguyên Xá.
                                                     <br>
-                                                    <span class="location">Luxemburg. Alice</span>
+                                                    <span class="location">Bắc Từ Liêm</span>
                                                 </span>
                                             </p>
                                             <p>
                                                 <i class="pe-7s-mail"></i>
                                                 <span>
-                                                    <a href="mailto:contact@company.com">contact@company.com</a>
+                                                    <a href="mailto:contact@company.com">hieu3th@gmail.com</a>
                                                 </span>
                                             </p>
                                             <p>
@@ -788,201 +448,9 @@
                 </footer>
                 <!-- footer area end -->
                 <!-- quick view start -->
-                <div class="quick-view modal fade in" id="quick-view">
-                    <div class="container">
-                        <div class="row">
-                            <div id="view-gallery">
-                                <div class="col-xs-12">
-                                    <div class="d-table">
-                                        <div class="d-tablecell">
-                                            <div class="modal-dialog">
-                                                <div class="main-view modal-content">
-                                                    <div class="modal-footer" data-dismiss="modal">
-                                                        <span>x</span>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-xs-12 col-sm-5">
-                                                            <div class="quick-image">
-                                                                <div class="single-quick-image tab-content text-center">
-                                                                    <div class="tab-pane  fade in active"
-                                                                        id="sin-pro-1">
-                                                                        <img src="{{ asset('img/shop/q1.jpg') }}"
-                                                                            alt="" />
-                                                                    </div>
-                                                                    <div class="tab-pane fade in" id="sin-pro-2">
-                                                                        <img src="{{ asset('img/shop/q2.jpg') }}"
-                                                                            alt="" />
-                                                                    </div>
-                                                                    <div class="tab-pane fade in" id="sin-pro-3">
-                                                                        <img src="{{ asset('img/shop/q3.jpg') }}"
-                                                                            alt="" />
-                                                                    </div>
-                                                                    <div class="tab-pane fade in" id="sin-pro-4">
-                                                                        <img src="{{ asset('img/shop/q4.jpg') }}"
-                                                                            alt="" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="quick-thumb">
-                                                                    <div class="nav nav-tabs">
-                                                                        <ul>
-                                                                            <li><a data-toggle="tab" href="#sin-pro-1">
-                                                                                    <img src="{{ asset('img/shop/q1.jpg') }}"
-                                                                                        alt="quick view" /> </a></li>
-                                                                            <li><a data-toggle="tab" href="#sin-pro-2">
-                                                                                    <img src="{{ asset('img/shop/q2.jpg') }}"
-                                                                                        alt="quick view" /> </a></li>
-                                                                            <li><a data-toggle="tab" href="#sin-pro-3">
-                                                                                    <img src="{{ asset('img/shop/q3.jpg') }}"
-                                                                                        alt="quick view" /> </a></li>
-                                                                            <li><a data-toggle="tab" href="#sin-pro-4">
-                                                                                    <img src="{{ asset('img/shop/q4.jpg') }}"
-                                                                                        alt="quick view" /> </a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-12 col-sm-7">
-                                                            <div class="quick-right">
-                                                                <div class="quick-right-text">
-                                                                    <h3><strong>PC Headphone</strong></h3>
-                                                                    <div class="rating">
-                                                                        <i class="fa fa-star"></i>
-                                                                        <i class="fa fa-star"></i>
-                                                                        <i class="fa fa-star"></i>
-                                                                        <i class="fa fa-star-half-o"></i>
-                                                                        <i class="fa fa-star-o"></i>
-                                                                    </div>
-                                                                    <div class="amount">
-                                                                        <h4>$65.00</h4>
-                                                                    </div>
-                                                                    <p>Lorem Ipsum is simply dummy text of the printing
-                                                                        and typesetting industry. Lorem Ipsum has beenin
-                                                                        the stand ard dummy text ever since the 1500s,
-                                                                        when an unknown printer took a galley of type
-                                                                        and scrames bled it make a type specimen book.
-                                                                    </p>
-                                                                    <div class="row m-p-b">
-                                                                        <div class="col-sm-12 col-md-6">
-                                                                            <div
-                                                                                class="por-dse responsive-strok clearfix">
-                                                                                <ul>
-                                                                                    <li><span>Availability</span><strong>:</strong>
-                                                                                        In stock</li>
-                                                                                    <li><span>Condition</span><strong>:</strong>
-                                                                                        New product</li>
-                                                                                    <li><span>Category</span><strong>:</strong>
-                                                                                        <a href="#">Men</a> <a
-                                                                                            href="#">Fashion</a> <a
-                                                                                            href="#">Shirt</a>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-12 col-md-6">
-                                                                            <div class="por-dse color">
-                                                                                <ul>
-                                                                                    <li><span>color</span><strong>:</strong>
-                                                                                        <a href="#">Red</a> <a
-                                                                                            href="#">Green</a> <a
-                                                                                            href="#">Blue</a>
-                                                                                    </li>
-                                                                                    <li><span>size</span><strong>:</strong>
-                                                                                        <a href="#">SL</a> <a
-                                                                                            href="#">SX</a> <a
-                                                                                            href="#">M</a> <a
-                                                                                            href="#">XL</a>
-                                                                                    </li>
-                                                                                    <li><span>tag</span><strong>:</strong>
-                                                                                        <a href="#">Men</a> <a
-                                                                                            href="#">Fashion</a> <a
-                                                                                            href="#">Shirt</a>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="dse-btn">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-12 col-md-12">
-                                                                                <div class="por-dse clearfix">
-                                                                                    <ul>
-                                                                                        <li class="share-btn clearfix">
-                                                                                            <span>quantity</span>
-                                                                                            <input
-                                                                                                class="input-text qty"
-                                                                                                name="qty"
-                                                                                                maxlength="12" value="1"
-                                                                                                title="Qty" type="text">
-                                                                                        </li>
-                                                                                        <li
-                                                                                            class="share-btn clearfix hidden-xs">
-                                                                                            <span>share</span>
-                                                                                            <a href="#"><i
-                                                                                                    class="fa fa-facebook"></i></a>
-                                                                                            <a href="#"><i
-                                                                                                    class="fa fa-twitter"></i></a>
-                                                                                            <a href="#"><i
-                                                                                                    class="fa fa-google-plus"></i></a>
-                                                                                            <a href="#"><i
-                                                                                                    class="fa fa-linkedin"></i></a>
-                                                                                            <a href="#"><i
-                                                                                                    class="fa fa-instagram"></i></a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-12 col-md-12">
-                                                                                <div class="por-dse add-to">
-                                                                                    <a href="#">add to cart</a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- <div class="quick-view modal fade in" id=""> -->
+                <!-- @include('client/templates.show') -->
+                <!-- @yield('detail') -->
+                <!-- </div> -->
                 <!-- quick view end -->
-            </div>
-            <!-- content end -->
-        </div>
-        <!-- content-wrap end -->
-    </div>
-
-
-
-
-
-
-    <!-- all js here -->
-    <script src="{{ asset('js-clien/vendor/jquery-1.12.0.min.js') }}"></script>
-    <script src="{{ asset('js-clien/snap.svg-min.js') }}"></script>
-    <script src="{{ asset('js-clien/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js-clien/jquery.meanmenu.js') }}"></script>
-    <script src="{{ asset('js-clien/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('js-clien/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('js-clien/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('js-clien/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('js-clien/jquery.validate.min.js') }}"></script>
-    <script src="lib-clien/js/jquery.nivo.slider.js"></script>
-    <script src="lib-clien/home.js"></script>
-    <script src="{{ asset('js-clien/plugins.js') }}"></script>
-    <script src="{{ asset('js-clien/main.js') }}"></script>
-    <script src="{{ asset('js-clien/classie.js') }}"></script>
-    <script src="{{ asset('js-clien/main3.js') }}"></script>
-</body>
-
-
-<!-- Mirrored from nahartheme.com/tf/jerin-preview/jerin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 23 Jul 2023 13:20:56 GMT -->
-
-</html>
+                @include('client/templates.footer')

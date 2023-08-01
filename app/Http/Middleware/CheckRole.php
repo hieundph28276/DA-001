@@ -15,12 +15,17 @@ class CheckRole
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $role)
     {
-        if(Auth::user()-> role == 0){
-            // return redirect()->route('adm')
-            dd('Bạn không được phép truy cập');
+        // if(Auth::user()-> role == 0){
+        //     return redirect()->route('index');
+        //     // dd('Bạn không được phép truy cập');
+        // }
+        // return $next($request);
+        if(Auth::check() && Auth::user()->role == $role){
+            return $next($request);
         }
-        return $next($request);
+
+        return redirect()->route('login')->with('error', 'Bạn phải đăng nhập bằng tài khoản quản trị viên');
     }
 }
