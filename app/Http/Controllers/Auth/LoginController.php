@@ -21,8 +21,9 @@ class LoginController extends Controller
                 // dd(123);
                 // Nếu đăng nhập thành công, lưu thông tin user vào session
                 $user = Auth::user();
-                $role = auth()->user()->role;
                 $request->session()->put('user', $user);// $user là đối tượng User đã đăng nhập
+                
+                $role = auth()->user()->role;
                 if($role == 0){
                     // dd(12121);
                     return redirect()->route('index');
