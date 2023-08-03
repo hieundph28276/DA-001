@@ -11,7 +11,7 @@
                                 <div class="main-view modal-content">
                                     <div class="modal-footer" data-dismiss="modal">
                                         <a href="/">
-                                        <span>x</span>
+                                            <span>x</span>
                                         </a>
                                     </div>
                                     <div class="row">
@@ -35,17 +35,13 @@
                                                     <div class="nav nav-tabs">
                                                         <ul>
                                                             <li><a data-toggle="tab" href="#sin-pro-1">
-                                                                    <img src="{{ asset('img/shop/q1.jpg') }}"
-                                                                        alt="quick view" /> </a></li>
+                                                                    <img src="{{ asset('img/shop/q1.jpg') }}" alt="quick view" /> </a></li>
                                                             <li><a data-toggle="tab" href="#sin-pro-2">
-                                                                    <img src="{{ asset('img/shop/q2.jpg') }}"
-                                                                        alt="quick view" /> </a></li>
+                                                                    <img src="{{ asset('img/shop/q2.jpg') }}" alt="quick view" /> </a></li>
                                                             <li><a data-toggle="tab" href="#sin-pro-3">
-                                                                    <img src="{{ asset('img/shop/q3.jpg') }}"
-                                                                        alt="quick view" /> </a></li>
+                                                                    <img src="{{ asset('img/shop/q3.jpg') }}" alt="quick view" /> </a></li>
                                                             <li><a data-toggle="tab" href="#sin-pro-4">
-                                                                    <img src="{{ asset('img/shop/q4.jpg') }}"
-                                                                        alt="quick view" /> </a></li>
+                                                                    <img src="{{ asset('img/shop/q4.jpg') }}" alt="quick view" /> </a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -75,8 +71,7 @@
                                                                     <li><span>Condition</span><strong>:</strong>
                                                                         New product</li>
                                                                     <li><span>Category</span><strong>:</strong>
-                                                                        <a href="#">Men</a> <a href="#">Fashion</a> <a
-                                                                            href="#">Shirt</a>
+                                                                        <a href="#">Men</a> <a href="#">Fashion</a> <a href="#">Shirt</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -85,16 +80,13 @@
                                                             <div class="por-dse color">
                                                                 <ul>
                                                                     <li><span>color</span><strong>:</strong>
-                                                                        <a href="#">Red</a> <a href="#">Green</a> <a
-                                                                            href="#">Blue</a>
+                                                                        <a href="#">Red</a> <a href="#">Green</a> <a href="#">Blue</a>
                                                                     </li>
                                                                     <li><span>size</span><strong>:</strong>
-                                                                        <a href="#">SL</a> <a href="#">SX</a> <a
-                                                                            href="#">M</a> <a href="#">XL</a>
+                                                                        <a href="#">SL</a> <a href="#">SX</a> <a href="#">M</a> <a href="#">XL</a>
                                                                     </li>
                                                                     <li><span>tag</span><strong>:</strong>
-                                                                        <a href="#">Men</a> <a href="#">Fashion</a> <a
-                                                                            href="#">Shirt</a>
+                                                                        <a href="#">Men</a> <a href="#">Fashion</a> <a href="#">Shirt</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -107,29 +99,27 @@
                                                                     <ul>
                                                                         <li class="share-btn clearfix">
                                                                             <span>quantity</span>
-                                                                            <input class="input-text qty" name="qty"
-                                                                                maxlength="12" value="1" title="Qty"
-                                                                                type="text">
+                                                                            <!-- Sử dụng form để gửi số lượng sản phẩm -->
+                                                                            <form id="add-to-cart-form" action="{{ route('add_to_cart') }}" method="POST">
+                                                                                @csrf
+                                                                                <input class="input-text qty" name="qty" maxlength="12" value="1" title="Qty" type="text">
+                                                                                <input type="hidden" name="product_id" value="{{ $phone->id }}">
+                                                                            </form>
                                                                         </li>
                                                                         <li class="share-btn clearfix hidden-xs">
                                                                             <span>share</span>
-                                                                            <a href="#"><i
-                                                                                    class="fa fa-facebook"></i></a>
-                                                                            <a href="#"><i
-                                                                                    class="fa fa-twitter"></i></a>
-                                                                            <a href="#"><i
-                                                                                    class="fa fa-google-plus"></i></a>
-                                                                            <a href="#"><i
-                                                                                    class="fa fa-linkedin"></i></a>
-                                                                            <a href="#"><i
-                                                                                    class="fa fa-instagram"></i></a>
+                                                                            <a href="#"><i class="fa fa-facebook"></i></a>
+                                                                            <a href="#"><i class="fa fa-twitter"></i></a>
+                                                                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                                                                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                                                                            <a href="#"><i class="fa fa-instagram"></i></a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-12 col-md-12">
                                                                 <div class="por-dse add-to">
-                                                                    <a href="#">add to cart</a>
+                                                                    <button type="submit" form="add-to-cart-form">add to cart</button>
                                                                 </div>
                                                             </div>
                                                         </div>

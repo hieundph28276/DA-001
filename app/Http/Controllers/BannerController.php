@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Storage;
 class BannerController extends Controller
 {
     public function index(Request $request){
-        $banner = DB::table('banners')->get();
+        $banner = DB::table('banners')
+        ->whereNull('deleted_at')
+        ->get();
         return view('admin/banner.index', compact('banner'));
     }
     public function add(Request $request){
@@ -55,7 +57,12 @@ class BannerController extends Controller
     }
     public function delete($id){
         Banner::where('id',$id)->delete();
-        Session::flash('success','Bạn đã xóa thành công');
+        Session::flash('success', 'Phone has been deleted');
         return redirect()->route('route_banner');
     }
+    // public function delete($id){
+    //     Banner::where('id',$id)->delete();
+    //     Session::flash('success','Bạn đã xóa thành công');
+    //     return redirect()->route('route_banner');
+    // }
 }

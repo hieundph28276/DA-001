@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PhoneRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class PhoneRequest extends FormRequest
      */
     public function rules()
     {
-            $rules = [];
+        $rules = [];
         //lấy ra các phương thức  hoạt động 
         $currenAction = $this->route()->getActionMethod();
         switch ($this->method()):
@@ -32,15 +32,23 @@ class PhoneRequest extends FormRequest
                     case 'add':
                         $rules = [
                             // dd(1212),
-                            "name" => "required",
-                            "description" => "required",
-                            "price" => "required",
-                            "category_id" => "required",
-                            "image" => "required|image|mimes:jpeg,jpg,png|max:10000"
+                            'name' => 'required',
+                            'email' => 'required|email|unique:users',
+                            'password' => 'required|min:6',
+                            'role' => 'required|in:0,1', 
                         ];
                         break;
                 endswitch;
         endswitch;
         return  $rules;
+    }
+    public function messages()
+    {
+        return [
+            'name.required'=>'Bắt buộc phải nhập tên',
+            'email.required'=>'Bắt buộc phải nhập email',
+            'email.unique'=>'emai không được trùng nhé',
+            'password.required'=>'Bắt buộc mật khẩu'
+        ];
     }
 }

@@ -37,11 +37,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($cart as $items)
                                 <tr>
                                     <td class="product-thumbnail">
                                         <a href="#"><img src="assets/img/cart/1.jpg" alt=""></a>
                                     </td>
-                                    <td class="product-name"><a href="#">Headphone</a></td>
+                                    <td class="product-name"><a href="#">{{ $items['name'] }}</a></td>
                                     <td class="product-price"><span class="amount">$165.00</span></td>
                                     <td class="product-quantity">
                                         <input value="1" type="number">
@@ -50,19 +51,7 @@
                                     <td class="product-remove"><a href="#"><i class="fa
                                                                         fa-times"></i></a></td>
                                 </tr>
-                                <tr>
-                                    <td class="product-thumbnail">
-                                        <a href="#"><img src="assets/img/cart/2.jpg" alt=""></a>
-                                    </td>
-                                    <td class="product-name"><a href="#">Table lamp</a></td>
-                                    <td class="product-price"><span class="amount">$150.00</span></td>
-                                    <td class="product-quantity">
-                                        <input value="1" type="number">
-                                    </td>
-                                    <td class="product-subtotal">$150.00</td>
-                                    <td class="product-remove"><a href="#"><i class="fa
-                                                                        fa-times"></i></a></td>
-                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

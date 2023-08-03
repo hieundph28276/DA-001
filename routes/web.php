@@ -18,7 +18,9 @@ Route::match(['GET', 'POST'], '/', [App\Http\Controllers\ClientController::class
 // Route::match(['GET','POST'],'/search',[App\Http\Controllers\ClientController::class, 'index'])->name('route_search');
 Route::get('/detail/{id}', [App\Http\Controllers\ClientController::class, 'detail'])
     ->name('route_detail');
-
+Route::get('cart', [App\Http\Controllers\CartController::class, 'cart']);
+Route::match(['GET', 'POST'], '/cart/add-to-cate', [App\Http\Controllers\CartController::class, 'addToCart'])
+    ->name('add_to_cart');
 // Route::get('/test', function(){
 //    return view('client.detail-view');
 // });
@@ -50,7 +52,6 @@ Route::middleware(['auth', 'check.role:1'])->group(function () {
     // --------------Banners----------------
     Route::get('banner', [App\Http\Controllers\BannerController::class, 'index'])
         ->name('route_banner');
-
     Route::match(['GET', 'POST'], 'banner/add', [App\Http\Controllers\BannerController::class, 'add'])
         ->name('route_banner_add');
     Route::match(['GET', 'POST'], 'banner/edit/{id}', [App\Http\Controllers\BannerController::class, 'edit'])
@@ -58,7 +59,17 @@ Route::middleware(['auth', 'check.role:1'])->group(function () {
     Route::get('banner/delete/{id}', [App\Http\Controllers\BannerController::class, 'delete'])
         ->name('route_banner_delete');
 });
-Route::get('cart', [App\Http\Controllers\CartController::class, 'cart']);
+
+Route::get('/user', [App\Http\Controllers\User\UserController::class, 'index'])
+    ->name('route_user');
+Route::match(['GET', 'POST'], '/user/add', [App\Http\Controllers\User\UserController::class, 'add'])
+    ->name('route_user_add');
+Route::match(['GET', 'POST'], '/user/edit/{id}', [App\Http\Controllers\User\UserController::class, 'edit'])
+    ->name('route_user_edit');
+Route::match(['GET', 'POST'], '/user/delete/{id}', [App\Http\Controllers\User\UserController::class, 'delete'])
+    ->name('route_user_delete');
+
+
 
 
 // Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'detail'])->name('route_detail');

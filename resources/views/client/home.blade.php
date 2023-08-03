@@ -91,7 +91,7 @@
                                 <span class="sale-new">new</span>
                             </div>
                             <div class="button-group">
-                                <a href="#" title="Add to Cart">
+                                <a href="{{ route('route_detail', ['id'=>$item->id]) }}" title="Add to Cart">
                                     <i class="pe-7s-cart"></i>
                                     add to cart
                                 </a>

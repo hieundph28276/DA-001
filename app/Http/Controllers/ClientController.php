@@ -14,6 +14,7 @@ class ClientController extends Controller
     {
         $banner = DB::table('banners')
         ->select('image')
+        ->whereNull('deleted_at')
         ->get();
         // kiểm tra xem có gửi dữ liệu form POST và có tham số "name" hay không
         if ($request->post() && $request->name) {

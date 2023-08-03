@@ -484,6 +484,13 @@
                                 <span> Banner </span>
                             </a>
                         </li> 
+
+                        <li>
+                            <a href="{{ route('route_user') }}">
+                                <i class="mdi mdi-calendar-month"></i>
+                                <span> Danh sách người dùng </span>
+                            </a>
+                        </li> 
                     </ul>
 
                 </div>

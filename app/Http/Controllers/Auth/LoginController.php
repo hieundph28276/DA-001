@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\Register;
 use App\Models\User;
 use Illuminate\Http\Request;
