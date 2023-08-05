@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         //     BannerSeeder::class
         // ]);
         // $category = [
-        //             "name" => "Ngyen Duc Hieu",
+        //             "name" => "Ngyen Van Huy",
         //             "brand" => "iphone",
         //             "description" => "hai name ",
         //             "price" => 100,

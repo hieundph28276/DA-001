@@ -79,9 +79,11 @@
                 @foreach($phone as $item)
                 <div class="col-md-3 col-sm-6 col-xs-12 mb-30">
                     <div class="single-shop">
-                        <div class="shop-img">
-                            <a href="{{ route('route_detail', ['id'=>$item->id]) }}"><img
-                                    src="{{ $item->image?''.Storage::url($item->image):''}}" /></a>
+                        <div class="shop-img" style="width: 250px">
+                            <a href="{{ route('route_detail', ['id'=>$item->id]) }}">
+                                <img src="{{ $item->image?''.Storage::url($item->image):''}}">
+                                <!-- <img src="" alt=""> -->
+                            </a>
                             <div class="shop-quick-view">
                                 <a href="{{ route('route_detail', ['id'=>$item->id]) }}" title="Quick View">
                                     <i class="pe-7s-look"></i>

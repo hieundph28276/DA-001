@@ -26,8 +26,8 @@ class BannerController extends Controller
             }
             $banner = Banner::create($param);
             if($banner->id){
-                Session::flash('success', 'Thêm mới thành công');
-                return redirect()->route('route_banner_add');
+                Session::flash('success', 'Thêm Banner thành công');
+                return redirect()->route('route_banner');
             }
         }
         return view('admin/banner.add');
@@ -49,7 +49,7 @@ class BannerController extends Controller
             ->update($params);
         if ($result) {
             Session::flash('success','sửa  thành công banner');
-            return redirect()->route('route_banner_edit',['id'=>$id]);
+            return redirect()->route('route_banner',['id'=>$id]);
         }
      }
     return view('admin/banner.edit', compact('banner'));
@@ -57,7 +57,7 @@ class BannerController extends Controller
     }
     public function delete($id){
         Banner::where('id',$id)->delete();
-        Session::flash('success', 'Phone has been deleted');
+        Session::flash('success', 'Xóa banner thành công');
         return redirect()->route('route_banner');
     }
     // public function delete($id){

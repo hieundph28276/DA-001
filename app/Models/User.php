@@ -15,6 +15,10 @@ class User extends Authenticatable
 
     // protected $table = 'users';
     // protected $fillable = ['id', 'name', 'password', 'role'];
+    public function cart()
+{
+    return $this->hasOne(Cart::class);
+}
 
 
     /**

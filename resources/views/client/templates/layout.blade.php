@@ -45,11 +45,12 @@
                     @guest
                     <h5>Welcome</h5>
                     @endguest
-                    <a href="cart.html"><i class="pe-7s-cart"></i><span>My Cart</span></a>
+                    <a href="{{ route('cart') }}"><i class="pe-7s-cart"></i><span>My Cart</span></a>
                     <a href="wishlist.html"><i class="pe-7s-like"></i><span>My Wishlist</span></a>
                     <a href="checkout.html"><i class="pe-7s-check"></i><span>Checkout</span></a>
                     <a href="{{ route('login') }}"><i class="pe-7s-next-2"></i><span>Sign In</span></a>
                     <a href="{{ route('login_add') }}"><i class="pe-7s-add-user"></i><span>Sign Up</span></a>
+                    <a href="{{ route('logout') }}"><i class="mdi mdi-logout-variant"></i><span>Logout</span></a>
                 </div>
             </nav>
             <button class="close-button" id="close-button">Close Menu</button>
@@ -136,7 +137,7 @@
                                                 <ul>
                                                     <li><a href="/">home</a>
                                                     </li>
-                                                    <li class="mega-position"><a href="shop-page.html">Women </a>
+                                                    <!-- <li class="mega-position"><a href="shop-page.html">Women </a>
                                                         <div class="mega-menu mega-4-colm">
                                                             <ul>
                                                                 <li class="menu-title uppercase">Clothings</li>
@@ -201,8 +202,8 @@
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                    </li>
-                                                    <li><a href="shop-page.html">shop</a>
+                                                    </li> -->
+                                                    <li><a href="{{ route('route_shop_pages') }}">shop</a>
                                                         <div class="mega-menu mega-2-colm">
                                                             <ul>
                                                                 <li class="menu-title uppercase">Jewelry</li>

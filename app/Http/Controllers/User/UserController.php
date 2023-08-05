@@ -47,8 +47,8 @@ class UserController extends Controller
             $result = User::where('id',$id)
                 ->update($request->except('_token'));
             if ($result) {
-                Session::flash('success','sửa  thành công sinh viên');
-                return redirect()->route('route_user_edit',['id'=>$id]);
+                Session::flash('success','sửa  thành công người dùng');
+                return redirect()->route('route_user',['id'=>$id]);
             }
          }
          return view('admin/user.edit', compact('user'));

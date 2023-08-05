@@ -17,10 +17,7 @@
                     <label>Remember me</label>
                     <a href="#">Forgot your Password?</a>
                 </div>
-                <button class="login-btn" type="submit">Login</button>
-            </div>
-            <div class="new-account">
-                <p>new here ? <a href="register.html">Create an new account .</a></p>
+                <button class="login-btn" type="submit">Register</button>
             </div>
         </form>
     </div>

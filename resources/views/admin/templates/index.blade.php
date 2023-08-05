@@ -473,24 +473,31 @@
 
                         <li>
                             <a href="{{ route('route_category_index') }}">
-                                <i class="mdi mdi-calendar-month"></i>
+                                <i class="ion ion-md-albums"></i>
                                 <span> Danh Mục </span>
                             </a>
                         </li> 
                         
                         <li>
                             <a href="{{ route('route_banner') }}">
-                                <i class="mdi mdi-calendar-month"></i>
+                                <i class="ion ion-md-appstore"></i>
                                 <span> Banner </span>
                             </a>
                         </li> 
 
                         <li>
                             <a href="{{ route('route_user') }}">
-                                <i class="mdi mdi-calendar-month"></i>
+                                <i class="on ion-ios-contact"></i>
                                 <span> Danh sách người dùng </span>
                             </a>
                         </li> 
+
+                        <li>
+                            <a href="{{ route('route_cart_list') }}">
+                                <i class="pe-7s-cart"></i>
+                                <span> Giỏ hàng </span>
+                            </a>
+                        </li>
                     </ul>
 
                 </div>

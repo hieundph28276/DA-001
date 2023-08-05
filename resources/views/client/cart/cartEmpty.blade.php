@@ -8,7 +8,7 @@
             <h2 class="breadcrumb-title">shopping cart</h2>
             <ul>
                 <li>
-                    <a class="active" href="/">Home</a>
+                    <a class="active" href="index.html">Home</a>
                 </li>
                 <li>cart</li>
             </ul>
@@ -35,24 +35,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(count($cartItems) > 0)
-                                @foreach($cartItems as $cart)
-                                <tr>
-                                    <td class="product-thumbnail">
-                                        <a href="#"><img src="{{ $cart->image?''.Storage::url($cart->image):''}}" style="width:100px" alt=""></a>
-                                    </td>
-                                    <td class="product-name"><a href="#">{{ $cart->name }}</a></td>
-                                    <td class="product-price"><span class="amount">{{ $cart->price }}.vnđ</span></td>
-                                    <td class="product-quantity">
-                                        <input value="{{ $cart->quantity }}" type="number"> 
-                                    </td>
-                                    <td class="product-subtotal">{{ $cart->price * $cart->quantity}}.vnđ</td>
-                                    <td class="product-remove"><a href="{{ route('cart_delete', ['id'=>$cart->id]) }}"><i class="fa fa-times"></i></a></td>
-                                </tr>
-                                @endforeach
-                                @else
-                                <p>Giỏ hàng của bạn đang trống.</p>
-                                @endif
+                                
                             </tbody>
                         </table>
                     </div>

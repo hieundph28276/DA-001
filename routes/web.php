@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeUnit\FunctionUnit;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,17 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/test', function () {
+    return view('client/shop.shop-list');
+});
+Route::get('/checkout', function () {
+    return view('client/cart.checkout');
+});
+// ------------------------------ Trang chủ ----------------------------------------------------------------
 Route::match(['GET', 'POST'], '/', [App\Http\Controllers\ClientController::class, 'index'])
     ->name('index');
-// Route::match(['GET','POST'],'/search',[App\Http\Controllers\ClientController::class, 'index'])->name('route_search');
+// ------------------------------ chi tiết sản phẩm ------------------------------
 Route::get('/detail/{id}', [App\Http\Controllers\ClientController::class, 'detail'])
     ->name('route_detail');
-Route::get('cart', [App\Http\Controllers\CartController::class, 'cart']);
-Route::match(['GET', 'POST'], '/cart/add-to-cate', [App\Http\Controllers\CartController::class, 'addToCart'])
-    ->name('add_to_cart');
-// Route::get('/test', function(){
-//    return view('client.detail-view');
-// });
 // --------------------------login--------------------------------------
 Route::match(['GET', 'POST'], '/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])
     ->name('login');
@@ -31,6 +33,19 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
     ->name('logout');
 Route::match(['GET', 'POST'], '/login/add', [App\Http\Controllers\Auth\LoginController::class, 'add'])
     ->name('login_add');
+// ----------------------------- giỏ hàng --------------------------------
+Route::get('cart', [App\Http\Controllers\CartController::class, 'cart'])
+    ->name('cart');
+Route::match(['GET', 'POST'], '/cart/add-to-cate', [App\Http\Controllers\CartController::class, 'addToCart'])
+    ->name('add_to_cart');
+Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'delete'])
+    ->name('cart_delete');
+// --------------------------- shop ------------------------
+Route::get('/shop/pages', [App\Http\Controllers\Shop\PageController::class, 'index'])
+    ->name('route_shop_pages');
+Route::get('/shop/list', [App\Http\Controllers\Shop\PageController::class, 'list'])
+    ->name('route_shop_list');
+
 Route::middleware(['auth', 'check.role:1'])->group(function () {
     Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])
         ->name('route_category_index');
@@ -58,16 +73,28 @@ Route::middleware(['auth', 'check.role:1'])->group(function () {
         ->name('route_banner_edit');
     Route::get('banner/delete/{id}', [App\Http\Controllers\BannerController::class, 'delete'])
         ->name('route_banner_delete');
+    // -------------------- user --------------------
+    Route::get('/user', [App\Http\Controllers\User\UserController::class, 'index'])
+        ->name('route_user');
+    Route::match(['GET', 'POST'], '/user/add', [App\Http\Controllers\User\UserController::class, 'add'])
+        ->name('route_user_add');
+    Route::match(['GET', 'POST'], '/user/edit/{id}', [App\Http\Controllers\User\UserController::class, 'edit'])
+        ->name('route_user_edit');
+    Route::match(['GET', 'POST'], '/user/delete/{id}', [App\Http\Controllers\User\UserController::class, 'delete'])
+        ->name('route_user_delete');
+    // ------------------------cart----------------------------------------
+    Route::get('cart/list', [App\Http\Controllers\CartController::class, 'index'])
+        ->name('route_cart_list');
+});
+Route::middleware(['auth', 'check.role:1'], function () {
+    // Route::match(['GET', 'POST'], '/', [App\Http\Controllers\ClientController::class, 'index'])
+    // ->name('index');
+    // ---------------------------------cart-------------------------------
+
+
 });
 
-Route::get('/user', [App\Http\Controllers\User\UserController::class, 'index'])
-    ->name('route_user');
-Route::match(['GET', 'POST'], '/user/add', [App\Http\Controllers\User\UserController::class, 'add'])
-    ->name('route_user_add');
-Route::match(['GET', 'POST'], '/user/edit/{id}', [App\Http\Controllers\User\UserController::class, 'edit'])
-    ->name('route_user_edit');
-Route::match(['GET', 'POST'], '/user/delete/{id}', [App\Http\Controllers\User\UserController::class, 'delete'])
-    ->name('route_user_delete');
+
 
 
 

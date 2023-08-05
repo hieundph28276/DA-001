@@ -102,8 +102,8 @@
                                                                             <!-- Sử dụng form để gửi số lượng sản phẩm -->
                                                                             <form id="add-to-cart-form" action="{{ route('add_to_cart') }}" method="POST">
                                                                                 @csrf
-                                                                                <input class="input-text qty" name="qty" maxlength="12" value="1" title="Qty" type="text">
-                                                                                <input type="hidden" name="product_id" value="{{ $phone->id }}">
+                                                                                <input class="input-text qty" name="quantity" maxlength="12" value="1" title="Qty" type="text">
+                                                                                <input type="hidden" name="phone_id" value="{{ $phone->id }}">
                                                                             </form>
                                                                         </li>
                                                                         <li class="share-btn clearfix hidden-xs">

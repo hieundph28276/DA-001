@@ -34,8 +34,8 @@ class PhoneController extends Controller
            }
           $phone = Phone::create($params);
             if ($phone->id){
-                Session::flash('success', 'Phone added successfully');
-                return redirect()->route('route_phone_add');
+                Session::flash('success', 'Thêm sản phẩm thành công');
+                return redirect()->route('route_phone_index');
             }
         }
         return view('admin/phone.add', compact('category'));
@@ -59,15 +59,15 @@ class PhoneController extends Controller
                $result = Phone::where('id',$id)
                 ->update($params);
             if ($result) {
-                Session::flash('success','sửa  thành công sinh viên');
-                return redirect()->route('route_phone_edit',['id'=>$id]);
+                Session::flash('success','sửa  thành công sản phẩm');
+                return redirect()->route('route_phone_index',['id'=>$id]);
             }
          }
         return view('admin/phone.edit', compact('phone','category'));
     }
     public function delete($id){
         Phone::where('id',$id)->delete();
-        Session::flash('success', 'Phone has been deleted');
+        Session::flash('success', 'Xóa thành công sản phẩm');
         return redirect()->route('route_phone_index');
     }
 }

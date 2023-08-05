@@ -23,8 +23,8 @@ class CategoryController extends Controller
         if($request->post()){
             $category = Category::create($request->except('_token'));
             if($category->id){
-                Session::flash('success', 'Category added successfully');
-                return redirect()->route('route_category_add');
+                Session::flash('success', 'Thêm danh mục thành công');
+                return redirect()->route('route_category_index');
             }
         }       
         // dd($category); z  
@@ -40,8 +40,8 @@ class CategoryController extends Controller
            $result = Category::where('id',$id)
                ->update($request->except('_token'));
            if ($result) {
-               Session::flash('success','sửa  thành công sinh viên');
-               return redirect()->route('route_category_edit',['id'=>$id]);
+               Session::flash('success','Sửa danh mục thành công');
+               return redirect()->route('route_category_index',['id'=>$id]);
            }
         }
         return view('admin/category.edit',compact('category'));

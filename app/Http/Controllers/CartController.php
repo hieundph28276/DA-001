@@ -3,39 +3,79 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Phone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class CartController extends Controller
 {
+    public function index() {
+        $cart = DB::table('carts')->get();
+        return view('admin/cart.index', compact('cart'));
+    }
     public function cart(Request $request)
     {
-        // Lấy giỏ hàng từ session
-        $cart = $request->session()->get('cart');
-        // dd($cart);
+        // Kiểm tra xem người dùng đã đăng nhập hay chưa
+        if (Auth::check()) {
+            // Nếu đã đăng nhập, lấy thông tin người dùng
+            $userId = Auth::id();
 
-        // Nếu giỏ hàng không tồn tại hoặc rỗng, chuyển hướng về trang trống giỏ hàng
-        if (empty($cart)) {
-            return redirect()->route('index');
-            // Nếu có sản phẩm trong giỏ hàng, hiển thị trang giỏ hàng với danh sách sản phẩm
+            // Lấy thông tin tất cả sản phẩm trong giỏ hàng của người dùng
+            $cartItems = Cart::where('user_id', $userId)->get();
+            return view('client.cart', compact('cartItems'));
+        } else {
+            // Nếu chưa đăng nhập, bạn có thể điều hướng đến trang đăng nhập hoặc thông báo yêu cầu đăng nhập trước khi xem giỏ hàng.
+            return redirect()->route('login')->with('error', 'Bạn cần đăng nhập trước khi xem giỏ hàng.');
         }
-        return view('client.cart', compact('cart'));
+        // return view('client.cart', compact('cart'));
     }
     public function addToCart(Request $request)
     {
-        // dd(121212);
-        // Lấy thông tin sản phẩm từ request (có thể lấy thông qua id hoặc thông tin sản phẩm khác)
-        $product = Phone::find($request->input('product_id'));
-        $quantity = $request->input('qty');
-        // dd($product);
-        // Thêm sản phẩm vào giỏ hàng (có thể lưu vào session hoặc database)
-        // Ví dụ lưu vào session:
-        $cart = $request->session()->get('cart', []);
-        $cart[] = $product;
-        $request->session()->put('cart', $cart);
+        // Xác định điện thoại muốn thêm vào giỏ hàng
+        $phoneId = $request->input('phone_id');
+        $quantity = $request->input('quantity', 1);
 
-        // Hoặc lưu vào bảng "carts" trong cơ sở dữ liệu
+        // Kiểm tra xem người dùng đã đăng nhập hay chưa
+        if (Auth::check()) {
+            // Nếu đã đăng nhập, lấy thông tin người dùng
+            $userId = Auth::id();
+            // Lấy thông tin điện thoại từ CSDL
+            $phone = Phone::find($phoneId);
+            // dd($phone);
+            // Kiểm tra xem điện thoại đã tồn tại trong giỏ hàng hay chưa
+            $existingCartItem = Cart::where('user_id', $userId)
+                ->where('phone_id', $phoneId)
+                ->first();
 
-        return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào giỏ hàng.');
+            if ($existingCartItem) {
+                // Nếu đã tồn tại, tăng số lượng điện thoại trong giỏ hàng
+                $existingCartItem->quantity += $quantity;
+                $existingCartItem->save();
+            } else {
+                // Nếu chưa tồn tại, thêm mới vào giỏ hàng
+                Cart::create([
+                    'user_id' => $userId,
+                    'phone_id' => $phoneId,
+                    'quantity' => $quantity,
+                    'name' => $phone->name, // Lưu tên sản phẩm vào giỏ hàng
+                    'image' => $phone->image, // Lưu đường dẫn ảnh sản phẩm vào giỏ hàng
+                    'price' => $phone->price, // Lưu giá sản phẩm vào giỏ hàng
+                ]);
+            }
+
+            // Thêm điện thoại vào giỏ hàng thành công
+            return redirect()->route('cart')->with('success', 'Điện thoại đã được thêm vào giỏ hàng.');
+        } else {
+            // Nếu chưa đăng nhập, yêu cầu người dùng đăng nhập trước khi thêm vào giỏ hàng
+            return redirect()->route('login')->with('error', 'Bạn cần đăng nhập trước khi thêm điện thoại vào giỏ hàng.');
+        }
+    }
+    public function delete($id){
+        Cart::where('id', $id)->delete();
+        return redirect()->route('cart');
     }
 }
