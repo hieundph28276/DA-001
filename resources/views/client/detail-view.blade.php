@@ -100,7 +100,7 @@
                                                                         <li class="share-btn clearfix">
                                                                             <span>quantity</span>
                                                                             <!-- Sử dụng form để gửi số lượng sản phẩm -->
-                                                                            <form id="add-to-cart-form" action="{{ route('add_to_cart') }}" method="POST">
+                                                                            <form id="myForm" action="{{ route('add_to_cart') }}" method="POST">
                                                                                 @csrf
                                                                                 <input class="input-text qty" name="quantity" maxlength="12" value="1" title="Qty" type="text">
                                                                                 <input type="hidden" name="phone_id" value="{{ $phone->id }}">
@@ -119,7 +119,8 @@
                                                             </div>
                                                             <div class="col-sm-12 col-md-12">
                                                                 <div class="por-dse add-to">
-                                                                    <button type="submit" form="add-to-cart-form">add to cart</button>
+                                                                <a onclick="document.getElementById('myForm').submit()">add to cart</a>
+                                                                    <!-- <button type="submit" form="add-to-cart-form">add to cart</button> -->
                                                                 </div>
                                                             </div>
                                                         </div>

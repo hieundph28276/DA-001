@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\Register;
@@ -44,7 +45,7 @@ class LoginController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
-    public function add(Request $request){
+    public function add(LoginRequest $request){
         // $register = Register::find($id);
         if($request->isMethod('POST')){
             // Lấy toàn bộ dữ liệu trong form đăng ký mà chúng ta gửi lên

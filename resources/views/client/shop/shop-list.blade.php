@@ -122,7 +122,7 @@
                                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                                         <div class="shop-list-left">
                                                             <div class="shop-img">
-                                                                <a href="#"><img src="assets/img/shop/electronics/9.jpg" alt="" /></a>
+                                                                <a href="#"><img src="{{ $item->image? ''.Storage::url($item->image): ''}}" alt="" /></a>
                                                                 <div class="shop-quick-view">
                                                                     <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
                                                                         <i class="pe-7s-look"></i>
@@ -138,7 +138,7 @@
                                                         <div class="shop-list-right">
                                                             <div class="shop-list-all">
                                                                 <div class="shop-list-name">
-                                                                    <h3><a href="#">Table Lamp</a></h3>
+                                                                    <h3><a href="#">{{$item->name}}</a></h3>
                                                                 </div>
                                                                 <div class="shop-list-rating">
                                                                     <span class="ratting">
@@ -149,7 +149,7 @@
                                                                         <i class="fa fa-star active"></i>
                                                                     </span>
                                                                 </div>
-                                                                <p>Lorem ipsum dolor sit amet, adipiscing elit. Nam fringilla augue nec est auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, odio...</p>
+                                                                <p>{{$item->description}}</p>
                                                                 <div class="shop-list-price">
                                                                     <span class="list-price">
                                                                         <span class="new">$120.00</span>

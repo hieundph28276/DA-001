@@ -15,7 +15,7 @@ use SebastianBergmann\CodeUnit\FunctionUnit;
 */
 
 Route::get('/test', function () {
-    return view('client/shop.shop-list');
+    return view('client/cart.checkout');
 });
 Route::get('/checkout', function () {
     return view('client/cart.checkout');
@@ -40,6 +40,9 @@ Route::match(['GET', 'POST'], '/cart/add-to-cate', [App\Http\Controllers\CartCon
     ->name('add_to_cart');
 Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'delete'])
     ->name('cart_delete');
+    // -----------------------------đơn hàng-----------------------------------
+Route::match(['GET','POST'],'/cart/order', [App\Http\Controllers\Order\OrderController::class, 'index'])
+->name('route_order_index');    
 // --------------------------- shop ------------------------
 Route::get('/shop/pages', [App\Http\Controllers\Shop\PageController::class, 'index'])
     ->name('route_shop_pages');

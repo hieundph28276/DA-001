@@ -198,10 +198,12 @@
                     <div class="your-order">
                         <h2>Your Order</h2>
                         <ul>
-                            <li>luxury bag <span>$ 299.00</span></li>
-                            <li>Subtotal <span>$ 299.00</span></li>
-                            <li>Shipping <span>$ 100.00</span></li>
-                            <li class="order-total">Order Total <span>$ 399.00</span></li>
+                            @foreach( session('cartItems') as $item)
+                            <li>{{$item->name}} <span>{{ $item->price * $item->quantity}}.VNĐ</span></li>
+                            @endforeach
+                            <li>Subtotal <span>{{session('totalPrice')}}.VNĐ</span></li>
+                            <li>Shipping <span>24500.VNĐ</span></li>
+                            <li class="order-total">Order Total <span>{{session('totalPrice')+24500}}.VNĐ</span></li>
                         </ul>
                     </div>
                     <div class="your-payment">

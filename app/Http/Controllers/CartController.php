@@ -13,7 +13,8 @@ use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class CartController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $cart = DB::table('carts')->get();
         return view('admin/cart.index', compact('cart'));
     }
@@ -26,7 +27,12 @@ class CartController extends Controller
 
             // Lấy thông tin tất cả sản phẩm trong giỏ hàng của người dùng
             $cartItems = Cart::where('user_id', $userId)->get();
-            return view('client.cart', compact('cartItems'));
+            // Tính tổng số tiền cho tất cả đơn hàng trong giỏ hàng
+            $totalPrice = 0;
+            foreach ($cartItems as $cart) {
+                $totalPrice += $cart->price * $cart->quantity;
+            }
+            return view('client.cart', compact('cartItems', 'totalPrice'));
         } else {
             // Nếu chưa đăng nhập, bạn có thể điều hướng đến trang đăng nhập hoặc thông báo yêu cầu đăng nhập trước khi xem giỏ hàng.
             return redirect()->route('login')->with('error', 'Bạn cần đăng nhập trước khi xem giỏ hàng.');
@@ -61,9 +67,9 @@ class CartController extends Controller
                     'user_id' => $userId,
                     'phone_id' => $phoneId,
                     'quantity' => $quantity,
-                    'name' => $phone->name, // Lưu tên sản phẩm vào giỏ hàng
-                    'image' => $phone->image, // Lưu đường dẫn ảnh sản phẩm vào giỏ hàng
-                    'price' => $phone->price, // Lưu giá sản phẩm vào giỏ hàng
+                    'name' => $phone->name,
+                    'image' => $phone->image,
+                    'price' => $phone->price,
                 ]);
             }
 
@@ -74,7 +80,8 @@ class CartController extends Controller
             return redirect()->route('login')->with('error', 'Bạn cần đăng nhập trước khi thêm điện thoại vào giỏ hàng.');
         }
     }
-    public function delete($id){
+    public function delete($id)
+    {
         Cart::where('id', $id)->delete();
         return redirect()->route('cart');
     }

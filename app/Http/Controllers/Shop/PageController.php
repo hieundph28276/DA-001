@@ -20,7 +20,7 @@ class PageController extends Controller
     public function list()
     {
         $list = DB::table('phones')
-            ->select('name', 'price', 'image')
+            ->select('name', 'price', 'image', 'description')
             ->get();
         return view('client/shop.shop-list', compact('list'));
     }

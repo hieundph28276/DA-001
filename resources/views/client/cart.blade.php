@@ -19,9 +19,10 @@
 <!-- shopping-cart-area start -->
 <div class="cart-area ptb-100">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <form action="#">
+        <form id="myForm" action="{{ route('route_order_index') }}" method="POST">
+            @csrf
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="table-content table-responsive">
                         <table>
                             <thead>
@@ -44,7 +45,7 @@
                                     <td class="product-name"><a href="#">{{ $cart->name }}</a></td>
                                     <td class="product-price"><span class="amount">{{ $cart->price }}.vnđ</span></td>
                                     <td class="product-quantity">
-                                        <input value="{{ $cart->quantity }}" type="number"> 
+                                        <input value="{{ $cart->quantity }}" type="number">
                                     </td>
                                     <td class="product-subtotal">{{ $cart->price * $cart->quantity}}.vnđ</td>
                                     <td class="product-remove"><a href="{{ route('cart_delete', ['id'=>$cart->id]) }}"><i class="fa fa-times"></i></a></td>
@@ -56,26 +57,25 @@
                             </tbody>
                         </table>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-        <div class="row tax-coupon-div">
-            <div class="col-md-7 col-sm-12 col-xs-12">
-                <div class="tax-coupon-all">
-                    <div class="tax-coupon">
-                        <ul role="tablist">
-                            <li class="active">
-                                <a href="#tax" data-toggle="tab">Shipping and Tax</a>
-                            </li>
-                            <li>
-                                <a href="#coupon" data-toggle="tab">Discount Coupon </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tax-coupon-details tab-content">
-                        <div id="tax" class="shipping-dec tab-pane active">
-                            <p>Enter your destination to get a shipping estimate.</p>
-                            <div class="shipping-form">
+            <div class="row tax-coupon-div">
+                <div class="col-md-7 col-sm-12 col-xs-12">
+                    <div class="tax-coupon-all">
+                        <div class="tax-coupon">
+                            <ul role="tablist">
+                                <li class="active">
+                                    <a href="#tax" data-toggle="tab">Shipping and Tax</a>
+                                </li>
+                                <li>
+                                    <a href="#coupon" data-toggle="tab">Discount Coupon </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tax-coupon-details tab-content">
+                            <div id="tax" class="shipping-dec tab-pane active">
+                                <p>Enter your destination to get a shipping estimate.</p>
+                                <!-- <div class="shipping-form">
                                 <div class="single-shipping-form">
                                     <label class="required get">
                                         country
@@ -124,35 +124,39 @@
                                         <span>Get a Quote</span>
                                     </button>
                                 </div>
+                            </div> -->
                             </div>
-                        </div>
-                        <div id="coupon" class="coupon-dec tab-pane">
+                            <!-- <div id="coupon" class="coupon-dec tab-pane">
                             <p>Enter your coupon code if you have one.</p>
                             <label class="required get">coupon<em>*</em></label>
                             <input placeholder="coupon code" required="" type="text">
                             <button class="coupon-btn" type="submit">Apply Coupon</button>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-12 col-xs-12">
+                    <div class="cart-total">
+                        @if(count($cartItems)>0)
+                        <ul>
+                            <li>Subtotal<span>{{ $totalPrice }}.VNĐ</span></li>
+                            <li class="cart-black">Total<span>{{ $totalPrice }}.VNĐ</span></li>
+                        </ul>
+                        @endif
+                        <div class="cart-total-btn">
+                            <div class="cart-total-btn1 f-left">
+                                <a href="#">Proceed to
+                                    checkout</a>
+                            </div>
+                            <div class="cart-total-btn2 f-right">
+                                <!-- <button type="submit">thêm mới</button> -->
+                                <a href="#" onclick="document.getElementById('myForm').submit()">Confirm Order</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 col-sm-12 col-xs-12">
-                <div class="cart-total">
-                    <ul>
-                        <li>Subtotal<span>$315.00</span></li>
-                        <li class="cart-black">Total<span>$315.00</span></li>
-                    </ul>
-                    <div class="cart-total-btn">
-                        <div class="cart-total-btn1 f-left">
-                            <a href="#">Proceed to
-                                checkout</a>
-                        </div>
-                        <div class="cart-total-btn2 f-right">
-                            <a href="#">Confirm Order</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 <!-- shopping-cart-area end -->
