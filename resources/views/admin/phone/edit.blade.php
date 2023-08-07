@@ -17,7 +17,7 @@
                         @foreach($category as $category)
                         <option value="{{$category->id}}" {{$category->id == $phone->category_id ? 'selected' : ''}}>{{$category->name}}</option>
                         @endforeach
-                    </select>
+                    </select> 
                 </div>
                 <div class="form-group">
                     <label for="">Giá sản phẩm<span class="text-danger">*</span></label>

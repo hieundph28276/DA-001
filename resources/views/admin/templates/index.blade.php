@@ -498,6 +498,13 @@
                                 <span> Giỏ hàng </span>
                             </a>
                         </li>
+
+                        <li>
+                            <a href="{{ route('route_order_list') }}">
+                                <i class="pe-7s-cart"></i>
+                                <span> Đơn hàng </span>
+                            </a>
+                        </li>
                     </ul>
 
                 </div>

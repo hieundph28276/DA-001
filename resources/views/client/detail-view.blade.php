@@ -119,7 +119,7 @@
                                                             </div>
                                                             <div class="col-sm-12 col-md-12">
                                                                 <div class="por-dse add-to">
-                                                                <a onclick="document.getElementById('myForm').submit()">add to cart</a>
+                                                                <a href="#" onclick="document.getElementById('myForm').submit()">add to cart</a>
                                                                     <!-- <button type="submit" form="add-to-cart-form">add to cart</button> -->
                                                                 </div>
                                                             </div>

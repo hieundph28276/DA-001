@@ -127,7 +127,7 @@
                                                 <li>
                                                     <p class="buttons">
                                                         <a class="my-cart" href="cart.html">View Cart</a>
-                                                        <a class="checkout" href="checkout.html">Checkout</a>
+                                                        <a class="checkout" href="{{ route('route_order_check_out') }}">Checkout</a>
                                                     </p>
                                                 </li>
                                             </ul>

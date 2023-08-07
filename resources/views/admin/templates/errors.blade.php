@@ -11,7 +11,7 @@
 
 @endif
 
-@if ( Session::has('error') )
+@if ( Session::has('error') ) 
 
 <div class="alert alert-danger alert-dismissible" role="alert">
 

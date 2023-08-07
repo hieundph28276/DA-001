@@ -42,12 +42,22 @@ Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'del
     ->name('cart_delete');
     // -----------------------------đơn hàng-----------------------------------
 Route::match(['GET','POST'],'/cart/order', [App\Http\Controllers\Order\OrderController::class, 'index'])
-->name('route_order_index');    
+->name('route_order_index');  
+Route::match(['GET','POST'],'/cart/order/palceOrder', [App\Http\Controllers\Order\OrderController::class, 'placeOrder'])
+->name('route_order_place_order');  
+Route::get('/cart/order/checkOut', [App\Http\Controllers\Order\CheckoutController::class, 'checkOut'])
+->name('route_order_check_out');
+Route::get('/cart/order/check/show/{id}', [App\Http\Controllers\Order\CheckoutController::class, 'show'])
+->name('route_order_show');
+// -------------------------------- chi tiết hóa đơn --------------------------------
+// Route::get('/cart/check/out', [App\Http\Controllers\Order\CheckoutController::class, )
 // --------------------------- shop ------------------------
 Route::get('/shop/pages', [App\Http\Controllers\Shop\PageController::class, 'index'])
     ->name('route_shop_pages');
 Route::get('/shop/list', [App\Http\Controllers\Shop\PageController::class, 'list'])
     ->name('route_shop_list');
+    Route::post('/cart/place-order', [OrderController::class, 'placeOrder'])
+    ->name('cart.place_order');
 
 Route::middleware(['auth', 'check.role:1'])->group(function () {
     Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])
@@ -88,6 +98,14 @@ Route::middleware(['auth', 'check.role:1'])->group(function () {
     // ------------------------cart----------------------------------------
     Route::get('cart/list', [App\Http\Controllers\CartController::class, 'index'])
         ->name('route_cart_list');
+    Route::match(['GET', 'POST'], 'admin/order', [App\Http\Controllers\OrderController::class, 'index'])
+    ->name('route_order_list');
+    Route::get('/admin/order/delete/{id}', [App\Http\Controllers\OrderController::class, 'delete'])
+    ->name('route_order_delete');
+    Route::match(['GET', 'POST'], 'admin/order/edit/{id}', [App\Http\Controllers\OrderController::class, 'edit'])
+    ->name('route_order_edit');
+    Route::get('/print-invoice/{id}', [App\Http\Controllers\OrderController::class, 'printInvoice'])
+    ->name('print_invoice');
 });
 Route::middleware(['auth', 'check.role:1'], function () {
     // Route::match(['GET', 'POST'], '/', [App\Http\Controllers\ClientController::class, 'index'])
