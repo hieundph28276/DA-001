@@ -121,12 +121,12 @@
                                                 <div class="shop-img">
                                                     <a href="#"><img src="{{ $item->image?''.Storage::url($item->image): '' }}" alt="" /></a>
                                                     <div class="shop-quick-view">
-                                                        <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                        <a href="{{ route('route_detail', ['id'=>$item->id]) }}" title="Quick View">
                                                             <i class="pe-7s-look"></i>
                                                         </a>
                                                     </div>
                                                     <div class="button-group">
-                                                        <a href="#" title="Add to Cart">
+                                                        <a href="{{ route('route_detail', ['id'=>$item->id]) }}" title="Add to Cart">
                                                             <i class="pe-7s-cart"></i>
                                                             add to cart
                                                         </a>

@@ -32,7 +32,7 @@
 
                 <li class="dropdown notification-list dropdown d-none d-lg-inline-block ml-2">
                     <a class="nav-link dropdown-toggle mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="{{ asset ('images/flags/us.jpg') }}" alt="lang-image" height="12">
+                        <img src="" alt="lang-image" height="12">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                         <!-- item-->

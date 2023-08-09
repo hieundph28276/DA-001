@@ -28,5 +28,5 @@ class CheckoutController extends Controller
         $orderItems = OrderItem::where('order_id', $order->id)->get();
         // dd($orderItems);
         return view('client/cart.orderShow', compact('order', 'orderItems'));
-    }
+    } 
 }

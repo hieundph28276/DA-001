@@ -152,13 +152,13 @@
                                                                 <p>{{$item->description}}</p>
                                                                 <div class="shop-list-price">
                                                                     <span class="list-price">
-                                                                        <span class="new">$120.00</span>
-                                                                        <span class="old">$140.00</span>
+                                                                        <span class="new">{{ $item->price }}VNĐ</span>
+                                                                        <span class="old">50.000.000VNĐ</span>
                                                                     </span>
                                                                 </div>
                                                                 <div class="shop-list-cart">
                                                                     <div class="shop-group">
-                                                                        <a href="#" title="Add to Cart">
+                                                                        <a href="{{ route('route_detail', ['id'=>$item->id]) }}" title="Add to Cart">
                                                                             <i class="pe-7s-cart"></i>
                                                                             add to cart
                                                                         </a>

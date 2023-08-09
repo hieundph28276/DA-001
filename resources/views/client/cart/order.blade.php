@@ -30,7 +30,7 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="billing-input">
+                                <div class="billing-input">  
                                     <label>
                                         First Name
                                         <span class="required">*</span>
